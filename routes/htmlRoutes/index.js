@@ -7,9 +7,14 @@ router.get('/notes', (req, res) => {
 
 // Add a static route for index.html
 router.get('/', (req, res) => {
-  // `res.sendFile` is Express' way of sending a file
-  // `__dirname` is a variable that always returns the directory that your server is running in
+  // `__dirname` is a variable - directory that your server is running in
   res.sendFile(__dirname + '/index.html');
 });
+
+// Add a static route for any other misc route leads to index.html
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
+});
+
 
 module.exports = router;
