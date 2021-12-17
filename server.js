@@ -7,7 +7,7 @@ const htmlRoutes = require('./routes/htmlRoutes');
 
 
 // define the port
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 3001
 
 // initialize app variable / server
 const app =express();
@@ -25,6 +25,6 @@ app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
 
-app.listen(3002, () => {
+app.listen(`${PORT}`, () => {
   console.log(`Note Server on port ${PORT}`);
 });
