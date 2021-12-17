@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const uniqid = require('uniqid');
 
 const router = require('express').Router();
@@ -55,6 +56,7 @@ router.post('/notes', (req, res) => {
       } else {
         //convert string into objects
         const parsedNotes = JSON.parse(data);
+        console.log(parsedNotes);
 
         //add new note
         parsedNotes.push(newNote);
@@ -76,6 +78,7 @@ router.post('/notes', (req, res) => {
     // };
 
     console.log(newNote);
+
     res.json(newNote);
   } else {
     res.json('Error in adding a note');
