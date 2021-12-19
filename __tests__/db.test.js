@@ -1,21 +1,26 @@
-const fs = require('fs');
-const createNewNote = require('../lib/notes.js');
-const notes = require('../db/db.json');
+// *********   Test for findById funtion    *******
+const findById = require('../lib/notes.js');
+
 
 jest.mock('fs')
 
-// test('creates a note object', () => {
-//   const  note = createNewNote(
-//     { title: 'Darlene', text: 'jhgdja3ng2' },
-//     notes
-//   );
-//    expect(note.title).toBe('Darlene');
-//    expect(note.text).toBe('jhgdja3ng2');
-// });
 
-// function findById(id, notesArr) {
-//   const result = notesArr.filter(note => note.id === id)[0];
-//   console.log(result + 'line20');
-//   return result;
-// }; findById()
+test("finds by id", () => {
+  const startingNotes = [
+    {
+      title: "First Notes Test",
+      text: "test 1",
+      id: "1"
+    },
+    {
+      title: "Second Notes Test",
+      text: "test 2",
+      id: "2"
+    },
+  ];
+
+  const result = findById("2", startingNotes);
+
+  expect(result.title).toBe("Second Notes Test");
+});
 

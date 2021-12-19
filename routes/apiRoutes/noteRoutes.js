@@ -49,13 +49,13 @@ router.get('/notes', (req, res) => {
 
 // GET by ID
 router.get('/notes/:id', (req, res) => {
-  //   if (req.body && req.params.id) {
-  //     console.info(`${req.method} request received to get a single note`);
-
+    if (req.body && req.params.id) {
+      console.info(`${req.method} request received to get a single note`);
+    }
   // define active ntoe id
   const noteId = req.params.id;
 
-  // Read Current Notes
+  // Read Current Notes - parse 
   const notes = JSON.parse(fs.readFileSync('db/db.json', 'utf-8'));
 
   for (let i = 0; i < notes.length; i++) {
