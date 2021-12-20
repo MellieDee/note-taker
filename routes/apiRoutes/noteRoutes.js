@@ -44,26 +44,51 @@ router.get('/notes', (req, res) => {
 //   return activeNote
 // });
 
-router.get('/notes/:id', function (req, res) {
-  const notes = JSON.parse(fs.readFileSync('db/db.json', 'utf-8'));
+// router.get('/notes/:id', function (req, res) {
+//   const notes = JSON.parse(fs.readFileSync('db/db.json', 'utf-8'));
+// });
 
-  
 
+
+router.delete('/notes/:id', (req, res) => {
+  let notes = JSON.parse(fs.readFileSync('db/db.json', 'utf-8'));
+
+  console.log(notes)
+
+  // if (req.body && req.params.id) {
+  //   console.info(`${req.method} request received to get a single note`);
+  // }
+
+
+  // define active note id
+  const noteId = req.params.id;
+
+  for (let i = 0; i < notes.length; i++) {
+    if (noteId === notes[i].id) {
+      console.log('from line 68 ' + notes[i].id);
+
+      notes.splice(notes[i], 1);
+
+      notes = JSON.parse(fs.writeFileSync('db/db.json', JSON.stringify(notes, null, 4)));
+
+      console.log('Notes after splice ' + notes);
+
+      res.json(notes);
+
+        // //write note to db.json file
+        // fs.writeFileSync('db/db.json', JSON.stringify(parsedNotes, null, 4));
+     
+    }
+  }
+
+  // if (!err) {
+  //   return res.send('deleted!');
+  // } else {
+  //   return res.send('Error deleting!');
+  // }
 });
 
 
-
-router.delete('notes/:id', function(req, res) {
-
-  notes.Remove({ id: req.params.id }, function(err) {
-      if (!err) {
-          return res.send('deleted!');
-      } else {
-          return res.send('Error deleting!');
-      }
-  });
-
-});
 
 
 
@@ -77,7 +102,7 @@ router.delete('notes/:id', function(req, res) {
 //     }
 //   // define active ntoe id
 //   const noteId = req.params.id;
-
+// s
 //   // Read Current Notes - parse 
 //   const notes = JSON.parse(fs.readFileSync('db/db.json', 'utf-8'));
 
@@ -130,9 +155,8 @@ router.post('/notes', (req, res) => {
       res.json(error)
     };
     res.json(newNote);
-
-
     console.log(newNote);
+
     // res.json(newNote);
   } else {
     res.json('Error in adding a note');
