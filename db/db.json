@@ -1,12 +1,17 @@
 [
     {
-        "title": "I am Sample Note 2",
-        "text": "Note 2",
-        "id": "1vqyehgna5bf"
+        "title": "Sample Note 1",
+        "text": "Note 1",
+        "id": "1yedkxdxt8nx"
     },
     {
-        "title": "I am Sample Note 3",
+        "title": "Sample Note 2",
         "text": "Note 2",
-        "id": "1vqyehgna5bf"
+        "id": "1ykbkxdxylds"
+    },
+    {
+        "title": "Sample Note 3 - The Charmer",
+        "text": "Third time's a charm I like to say!",
+        "id": "1ymckxdy21vh"
     }
 ]

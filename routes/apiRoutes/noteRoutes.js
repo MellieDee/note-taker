@@ -50,72 +50,29 @@ router.get('/notes', (req, res) => {
 
 
 
-router.delete('/notes/:id', (req, res) => {
-  let notes = JSON.parse(fs.readFileSync('db/db.json', 'utf-8'));
-
-  console.log(notes)
-
-  // if (req.body && req.params.id) {
-  //   console.info(`${req.method} request received to get a single note`);
-  // }
-
-
-  // define active note id
-  const noteId = req.params.id;
-
-  for (let i = 0; i < notes.length; i++) {
-    if (noteId === notes[i].id) {
-      console.log('from line 68 ' + notes[i].id);
-
-      notes.splice(notes[i], 1);
-
-      notes = JSON.parse(fs.writeFileSync('db/db.json', JSON.stringify(notes, null, 4)));
-
-      console.log('Notes after splice ' + notes);
-
-      res.json(notes);
-
-        // //write note to db.json file
-        // fs.writeFileSync('db/db.json', JSON.stringify(parsedNotes, null, 4));
-     
-    }
-  }
-
-  // if (!err) {
-  //   return res.send('deleted!');
-  // } else {
-  //   return res.send('Error deleting!');
-  // }
-});
-
-
-
-
-
 
 //*********************************************************/
 // ************      DELETE:    Note        ***************/
 //*********************************************************/
-// router.get('/notes/:id', (req, res) => {
-//     if (req.body && req.params.id) {
-//       console.info(`${req.method} request received to get a single note`);
-//     }
-//   // define active ntoe id
-//   const noteId = req.params.id;
-// s
-//   // Read Current Notes - parse 
-//   const notes = JSON.parse(fs.readFileSync('db/db.json', 'utf-8'));
 
-//   for (let i = 0; i < notes.length; i++) {
-//     if (noteId === notes[i].id) {
-//       res.json(noteId);
-//       return (noteId);
-//     }
-//   }
-//   res.json('Note not found');
-// });
+router.delete('/notes/:id', (req, res) => {
+  const notes = JSON.parse(fs.readFileSync('db/db.json', 'utf-8'));
 
+  // define active note id
+  let noteId = req.params.id;
 
+  for (let i = 0; i < notes.length; i++) {
+    if (noteId === notes[i].id) {
+      // use splice to remove file, and not leave undefinied 'holes'
+      notes.splice([i], 1);
+
+      //write note to db.json file
+      fs.writeFileSync('db/db.json', JSON.stringify(notes, null, 4));
+
+      res.json(notes);
+    }
+  }
+});
 
 
 
@@ -126,7 +83,6 @@ router.post('/notes', (req, res) => {
 
   // Destructuring assignment for the title & text in req.body
   const { title, text } = req.body
-
 
   // If all the required properties are present
   if (title && text) {
@@ -156,8 +112,6 @@ router.post('/notes', (req, res) => {
     };
     res.json(newNote);
     console.log(newNote);
-
-    // res.json(newNote);
   } else {
     res.json('Error in adding a note');
   }
