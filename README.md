@@ -83,8 +83,6 @@ No tests at this time.
 #### I used or Was Inspired By:
 https://expressjs.com/en/api.html#app.delete.method
 
-https://github.com/MellieDee/readMe-generator
-
 https://developers.suitecommerce.com/
 
 https://developers.suitecommerce.com/troubleshooting-uncaught-syntaxerror-unexpected-token-u-in-json-at-position-0.html
@@ -94,6 +92,9 @@ https://www.geeksforgeeks.org/node-js-fs-writefile-method/
 https://careerkarma.com/blog/typeerror-cannot-read-property-length-of-undefined/
 
 https://www.w3schools.com/js/js_array_methods.asp
+
+https://github.com/MellieDee/readMe-generator
+
 
 &nbsp;
 
